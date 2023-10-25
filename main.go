@@ -10,7 +10,7 @@ func Dado() int {
 	d1 := rand.Intn(6) + 1                        // Dado 1
 	d2 := rand.Intn(6) + 1                        // Dado 2
 	s := int(math.Pow(-1, float64(rand.Intn(2)))) // Dado Signo
-	// fmt.Printf("Operacion: %d + %d * %d = ", d1, s, d2)
+	fmt.Printf("Operacion: %d + %d * %d = ", d1, s, d2)
 	return d1 + s*d2
 }
 
@@ -50,7 +50,7 @@ func GenTablero(casillas uint) []rune {
 }
 
 func main() {
-	tablero := GenTablero(15)
+	tablero := GenTablero(60)
 	fmt.Printf("%c\n", tablero)
 	for i := 0; i < 5; i++ {
 		fmt.Println(Dado())
