@@ -49,7 +49,48 @@ go func() {
         estadoJuegoChan <- estadoJuego
 ```
 
-## 5. Conclusiones
+## 5. Resultados
+- Vista de resultado después de que los 4 jugadores llevarán a cabo sus respectivos turnos
+```cmd
+----------------------------------------------
+Operacion: 4 + (1 * 5)          J1 OBTUVO: 9, SUM: 62
+Operacion: 3 + (-1 * 2)         J2 OBTUVO: 1, SUM: 35Estado del juego:
+J1: MovimientosTotales=62, Fichas=3
+J2: MovimientosTotales=34, Fichas=3
+J3: MovimientosTotales=4, Fichas=3
+J4: MovimientosTotales=51, Fichas=1
+
+Estado del juego:
+J1: MovimientosTotales=62, Fichas=3
+J2: MovimientosTotales=35, Fichas=3
+J3: MovimientosTotales=4, Fichas=3
+J4: MovimientosTotales=51, Fichas=1
+
+
+Operacion: 4 + (1 * 2)          J3 OBTUVO: 6, SUM: 10
+Operacion: 3 + (1 * 2)          J4 OBTUVO: 5, SUM: 56Estado del juego:
+J1: MovimientosTotales=62, Fichas=3
+J2: MovimientosTotales=35, Fichas=3
+J3: MovimientosTotales=10, Fichas=3
+J4: MovimientosTotales=51, Fichas=1
+
+Estado del juego:
+J1: MovimientosTotales=62, Fichas=3
+J2: MovimientosTotales=35, Fichas=3
+J3: MovimientosTotales=10, Fichas=3
+J4: MovimientosTotales=56, Fichas=1
+```
+- Resultado final del juego
+```cmd
+----------------------------------------------
+Operacion: 6 + (1 * 5)          J1 OBTUVO: 11, SUM: 71          ¡J1 GANO!, cantidad de fichas metidas: 4
+[# 2 _ _ _ _ _ 2 _ _ _ 3 _ 3 _ _ _ 3 2 3 2 _ _ _ _ 3 _ _ _ 1 _ 1 2 _ 1 _ _ 3 _ _ _ _ _ _ _ 3 _ _ _ _ 1 _ 2 _ _ _ _ 2 1 3 _ _ _ _ _ 1 2 2 2 _ _ X]
+[# 2 _ _ _ _ _ 2 _ _ _ 3 _ 3 _ _ _ 3 2 3 2 _ _ _ _ 3 _ _ _ 1 _ 1 2 _ 1 X _ 3 _ _ _ _ _ _ _ 3 _ _ _ _ 1 _ 2 _ _ _ _ 2 1 3 _ _ _ _ _ 1 2 2 2 _ _ #]
+[# 2 _ _ _ _ _ 2 _ _ X 3 _ 3 _ _ _ 3 2 3 2 _ _ _ _ 3 _ _ _ 1 _ 1 2 _ 1 _ _ 3 _ _ _ _ _ _ _ 3 _ _ _ _ 1 _ 2 _ _ _ _ 2 1 3 _ _ _ _ _ 1 2 2 2 _ _ #]
+[# 2 _ _ _ _ _ 2 _ _ _ 3 _ 3 _ _ _ 3 2 3 2 _ _ _ _ 3 _ _ _ 1 _ 1 2 _ 1 _ _ 3 _ _ _ _ _ _ _ 3 _ _ _ _ 1 _ 2 _ _ _ X 2 1 3 _ _ _ _ _ 1 2 2 2 _ _ #]
+```
+
+## 6. Conclusiones
 En el proyecto desarrollado, se utilizan canales para lograr la comunicación en tiempo real del estado del juego entre los goroutines que manejan los movimientos de los jugadores y los goroutines que muestra el estado del juego. A continuación, se resumen los aspectos clave del uso de canales en el desarrollo del juego:
 - Se crea un canal llamado estadoJuegoChan utilizando la función make. Este canal se utiliza para enviar y recibir información sobre el estado del juego.
 - Se inicia una goroutine que escucha de manera continua en el canal estadoJuegoChan. Esta goroutine se encarga de mostrar el estado del juego en tiempo real. Cada vez que se envía un nuevo estado del juego a través del canal, la goroutine lo captura y lo muestra en la consola.
