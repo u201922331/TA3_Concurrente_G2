@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"sync" // Importar la biblioteca sync para la exclusión mutua.
 )
 
 const (
@@ -102,7 +103,7 @@ func main() {
 		{"J4", 0, 0},
 	}
 	t := Tablero{jugadores, GenTablero(Nro_casillas)}
-
+	var mu sync.Mutex // Agregar una exclusión mutua para garantizar la sincronización.
 	jugadorActual := 0
 
 	// Define un canal para comunicar el estado del juego
@@ -154,7 +155,9 @@ func main() {
 		fmt.Printf("\t\t%s OBTUVO: %d, SUM: %d", j.Nombre, dado, j.MovimientosTotales)
 
 		if Meta(j) {
+			mu.Lock() // Bloquear el acceso concurrente a las fichas.
 			j.Fichas++
+			mu.Unlock() // Desbloquear el acceso después de actualizar las fichas.
 			if j.Fichas == 4 {
 				fmt.Printf("\t\t¡%s GANO!, cantidad de fichas metidas: %d\n", j.Nombre, j.Fichas)
 				close(estadoJuegoChan) // Cierra el canal cuando el juego ha terminado
